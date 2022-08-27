@@ -44,8 +44,8 @@ function LandingPage(props) {
     <Nav/>
     <div className={styles.container}>
       <div className={styles.innerBox}>
-        <div style={{ textAlign: "center" }}>
-          <h1>
+        <div style={{ textAlign: "center" }} onload={handleCheckList}>
+         {/* <h1>
             <Link to="/upload">
               Upload Page
             </Link>
@@ -58,17 +58,20 @@ function LandingPage(props) {
           <h2 className={styles.heading}>REACT-JS CSV LIST </h2>
           <h2>Available: </h2>
           <h1 className={styles.heading}>
-            <button onClick={handleCheckList}>
-              Check List
-            </button>
-          </h1>
+           <button >
+  Check List
+</button>
+           
+  </h1>*/}
+ 
           <ul>
                 {arrayOfDocs.map(function(doc, index){
                     return <li key={ index }>
+                      
                       <Link to="/listpage" state = {{ docID: doc}}>
                         {doc}
                       </Link>
-                            </li>;
+                      </li>;
                 })}
             </ul>
         </div>

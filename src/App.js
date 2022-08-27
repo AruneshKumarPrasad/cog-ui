@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
+import Profile from "./components/Profile/Profile";
 import Home from "./components/Home/Home";
 import Login from "./components/Login/Login";
 import Signup from "./components/SignUp/SignUp";
@@ -28,7 +28,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Login />} />
-
+          <Route path="/profile" element={<Profile />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/landingpage" element={<LandingPage name={userName} />} />
           <Route path="/listpage" element={<ListPage />} />

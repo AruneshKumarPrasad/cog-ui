@@ -1,0 +1,26 @@
+.profile{
+    display: flex;
+    align-items: center;
+    justify-self: center;
+    text-align: center;
+    width:90%;
+    margin-top:15px;
+    padding: 10px;
+    
+}
+.left{
+    background-color: red;
+    width: 40%;
+    align-items: center;
+    justify-self: center;
+    text-align: center;
+    height: 80vh;
+}
+.right{
+    background-color: green;
+   width: 60%;
+    align-items: center;
+    justify-self: center;
+    text-align: center;
+    height: 80vh;
+}
