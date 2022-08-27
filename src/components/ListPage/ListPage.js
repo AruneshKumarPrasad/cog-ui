@@ -13,6 +13,7 @@ function ListPage() {
 	const { docID } = location.state;
 	const [array, setArray] = useState([]);
 	const [headerArray, setHeaderArray] = useState([]);
+	const [fileName, setFileName] = useState('');
 	const firebaseToArray = async (string) => {
 		const docsRef = collection(
 			db,
@@ -25,6 +26,7 @@ function ListPage() {
 		querySnapshot.forEach((doc) => {
 			// doc.data() is never undefined for query doc snapshots
 			console.log(doc.id, ' => ', doc.data()['name']);
+			setFileName(doc.data()['name']);
 			setArray([...doc.data()['array']]);
 			setHeaderArray([...doc.data()['keys']]);
 			console.log(' - > ' + Object.keys(array[0]));
@@ -43,8 +45,9 @@ function ListPage() {
 			</h1>
 			<div className={styles.innerBox}>
 				<div style={{ textAlign: 'center' }}>
-					<button onClick={firebaseToArray}>Preview</button>
-					<br />
+					<button onClick={firebaseToArray}>Load Preview</button>
+					{'    '}
+					<p style={{ margin: '0' }}> Dataset Name: {fileName}</p>
 					<br />
 					<table className={styles.tbl}>
 						<thead>
