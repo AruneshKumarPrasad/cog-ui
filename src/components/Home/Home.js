@@ -8,7 +8,7 @@ function Home() {
     <div className={styles.container}>
       <div className={styles.innerBox}>
         <h1 className={styles.heading}>
-          <Link to="/login">
+          <Link to="/">
             Login
             </Link>
         </h1>

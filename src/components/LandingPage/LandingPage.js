@@ -4,7 +4,7 @@ import styles from "./LandingPage.module.css";
 import React, { useState } from "react";
 import { Link,useNavigate } from "react-router-dom";
 import { collection, query, getDocs } from "firebase/firestore";
-
+import Nav from "../Nav/Nav";
 
 function LandingPage(props) {
 
@@ -40,6 +40,8 @@ function LandingPage(props) {
     };
 
   return (
+    <>
+    <Nav/>
     <div className={styles.container}>
       <div className={styles.innerBox}>
         <div style={{ textAlign: "center" }}>
@@ -72,6 +74,7 @@ function LandingPage(props) {
         </div>
       </div>
     </div>
+    </>
   );
 }
 
