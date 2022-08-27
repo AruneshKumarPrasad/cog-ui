@@ -44,3 +44,7 @@
     background-color: #343a40;
     color: rgb(218, 218, 218);
 }
+
+.deletebtn:hover {
+    color: rgb(227, 50, 50);
+}
