@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { collection, query, getDocs } from 'firebase/firestore';
 
-function LandingPage(props) {
+function LandingPage() {
   const [arrayOfDocs, setArrayOfDocs] = useState([]);
 
 	const handleCheckList = async () => {
@@ -38,7 +38,7 @@ function LandingPage(props) {
 										<Link
 											to="/listpage"
 											state= {{ docID: doc.id }}>
-											{index+1} {doc.data()['name']} {doc.data()['time']} {doc.data()['array'].length}
+											{index+1}  Name:{doc.data()['name']}  Created-on: {doc.data()['date']} at {doc.data()['time']}  Records: {doc.data()['array'].length}
 										</Link>
 									</li>
 								);
