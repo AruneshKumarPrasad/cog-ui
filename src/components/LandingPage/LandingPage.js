@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { collection, query, getDocs } from 'firebase/firestore';
 
-function LandingPage(props) {
+function LandingPage() {
   const [arrayOfDocs, setArrayOfDocs] = useState([]);
 
 	const handleCheckList = async () => {
