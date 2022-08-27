@@ -1,6 +1,6 @@
 import { auth, db } from '../../firebase';
 import styles from './LandingPage.module.css';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { collection, query, getDocs, doc, deleteDoc } from 'firebase/firestore';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -8,6 +8,13 @@ import { faTrash, faTableCells } from '@fortawesome/free-solid-svg-icons';
 import Nav from '../Nav/Nav';
 
 function LandingPage(props) {
+
+	useEffect(() => {
+		let ignore = false;
+		if (!ignore)  handleCheckList()
+		return () => { ignore = true; }
+		},[]);
+
 	const [arrayOfDocs, setArrayOfDocs] = useState([]);
 
 	const handleCheckList = async () => {
@@ -45,9 +52,7 @@ function LandingPage(props) {
 			<Nav />
 			<div className={styles.innerBox}>
 				<div style={{ textAlign: 'center' }} onLoad={handleCheckList}>
-					<button onClick={handleCheckList}>Get Files</button>
-					<br />
-					<br />
+					{/* <button onClick={handleCheckList}>Get Files</button> */}
 					<table className={styles.tbl}>
 						<thead>
 							<tr>

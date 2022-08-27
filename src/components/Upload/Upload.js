@@ -61,7 +61,7 @@ const Upload = () => {
 				':' +
 				today.getSeconds();
 
-			const nameFile = cusName;
+			const nameFile = cusName == '' ? inputFile.name : cusName;
 			setDate(dateInstance);
 			setTime(timeInstance);
 			setName(nameFile);
@@ -130,7 +130,7 @@ const Upload = () => {
 					name="cusName"
 					value={cusName}
 					onChange={handleCusName}
-					placeholder="Enter file name"
+					placeholder="Enter file name before selecting file"
 				/>
 				<div className={styles.filecontainer}>
 					<input
