@@ -2,7 +2,7 @@ import { auth, db } from '../../firebase';
 import styles from './LandingPage.module.css';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { collection, query, getDocs } from 'firebase/firestore';
+import { collection, query, getDocs,doc, deleteDoc } from 'firebase/firestore';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faTableCells } from '@fortawesome/free-solid-svg-icons';
 
@@ -24,6 +24,10 @@ function LandingPage(props) {
 		querySnapshot.forEach((doc) => {
 			setArrayOfDocs((arrayOfDocs) => [...arrayOfDocs, doc]);
 		});
+	};
+
+	const handleDelete = async () => {
+		await deleteDoc(doc(db, "cities", "DC"));
 	};
 
 	return (
