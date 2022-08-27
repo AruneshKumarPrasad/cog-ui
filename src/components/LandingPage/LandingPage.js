@@ -3,9 +3,11 @@ import styles from './LandingPage.module.css';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { collection, query, getDocs } from 'firebase/firestore';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash, faTableCells } from '@fortawesome/free-solid-svg-icons';
 
 function LandingPage(props) {
-  const [arrayOfDocs, setArrayOfDocs] = useState([]);
+	const [arrayOfDocs, setArrayOfDocs] = useState([]);
 
 	const handleCheckList = async () => {
 		setArrayOfDocs((arrayOfDocs) => []);
@@ -25,28 +27,70 @@ function LandingPage(props) {
 	};
 
 	return (
-			<div className = {styles.container}>
-				<div className = {styles.innerBox}>
-					<div
-						style= {{ textAlign: 'center' }}
-						onLoad={handleCheckList}>
-						<button onClick={handleCheckList}>Get Files</button>
-						<ul>
+		<div className={styles.container}>
+			<div className={styles.innerBox}>
+				<div style={{ textAlign: 'center' }} onLoad={handleCheckList}>
+					<button onClick={handleCheckList}>Get Files</button>
+
+					<table className={styles.tbl}>
+						<thead>
+							<tr>
+								<th>S no</th>
+								<th>Name</th>
+								<th>Number of records</th>
+								<th>Created at</th>
+								<th>Delete</th>
+								<th>Preview</th>
+							</tr>
+						</thead>
+						<tbody>
 							{arrayOfDocs.map(function (doc, index) {
 								return (
-									<li key={index}>
-										<Link
+									<tr key={index}>
+										{/* <thead>
+											<tr key={'header'}>
+												{headerArray.map((key) => (
+													<th>{key}</th>
+												))}
+											</tr>
+										</thead> */}
+
+										{/* <td>1</td>
+											<td>sdasadas</td>
+											<td>21313</td>
+											<td>12-122222</td> */}
+										<td>{index + 1}</td>
+										<td>{doc.data()['name']}</td>
+										<td>{doc.data()['array'].length}</td>
+										<td>{doc.data()['time']}</td>
+										<td>
+											<FontAwesomeIcon icon={faTrash} />
+										</td>
+										<td>
+											<Link
+												to="/listpage"
+												state={{ docID: doc.id }}>
+												<FontAwesomeIcon
+													icon={faTableCells}
+												/>
+											</Link>
+										</td>
+
+										{/* <Link
 											to="/listpage"
-											state= {{ docID: doc.id }}>
-											{index+1} {doc.data()['name']} {doc.data()['time']} {doc.data()['array'].length}
-										</Link>
-									</li>
+											state={{ docID: doc.id }}>
+											{index + 1} {doc.data()['name']}{' '}
+											{doc.data()['time']}{' '}
+											{doc.data()['array'].length}
+										</Link> */}
+									</tr>
 								);
 							})}
-						</ul>
-					</div>
+						</tbody>
+					</table>
 				</div>
 			</div>
+		</div>
 	);
 }
 
