@@ -3,7 +3,7 @@ import Papa from 'papaparse';
 import styles from './Upload.module.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { auth, db } from '../../firebase';
-import { doc, setDoc, collection, query, where } from 'firebase/firestore';
+import { doc, setDoc } from 'firebase/firestore';
 import Nav from '../Nav/Nav';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeftLong } from '@fortawesome/free-solid-svg-icons';
