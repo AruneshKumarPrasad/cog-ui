@@ -5,7 +5,9 @@ import { auth } from "../../firebase";
 function Profile() {
   return (
     <>
-    
+    <Nav/>
+    <br/>
+    <br/>
     <div className="profile">
     <div className="left">
         <img src="./dp.jpg"/>
