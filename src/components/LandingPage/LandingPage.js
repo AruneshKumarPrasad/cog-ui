@@ -62,7 +62,7 @@ function LandingPage(props) {
 										<td>{index + 1}</td>
 										<td>{doc.data()['name']}</td>
 										<td>{doc.data()['array'].length}</td>
-										<td>{doc.data()['time']}</td>
+										<td>{doc.data()['date']}  {doc.data()['time']}</td>
 										<td>
 											<FontAwesomeIcon icon={faTrash} />
 										</td>
