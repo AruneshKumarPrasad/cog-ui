@@ -6,7 +6,7 @@ import Nav from '../Nav/Nav';
 import { auth } from '../../firebase';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function Profile() {
 	const navigate = useNavigate();
@@ -32,11 +32,11 @@ function Profile() {
 			<div className="profile">
 				<FontAwesomeIcon icon={faUserCircle} size="4x" />
 
-				<label>Username: CogUser</label>
+				<label>Username: {auth.currentUser.displayName}</label>
 				<span></span>
-				<label>Time Of Login: 10-12-2022</label>
-				<label>Email: test@gmail.com</label>
-				<button onClick={handleLogout} class="btn btn-primary">
+				<label>Time Of Login: {auth.currentUser.metadata.lastSignInTime}</label>
+				<label>Email: {auth.currentUser.email}</label>
+				<button submitButtonDisabled={submitButtonDisabled} onClick={handleLogout} class="btn btn-primary">
 					Logout
 				</button>
 			</div>
