@@ -58,16 +58,17 @@ function LandingPage(props) {
           <h2 className={styles.heading}>REACT-JS CSV LIST </h2>
           <h2>Available: </h2>
           <h1 className={styles.heading}>
-           <button >
-  Check List
-</button>
+           
            
   </h1>*/}
+  <button onClick={handleCheckList}>
+  Check List
+</button>
  
           <ul>
                 {arrayOfDocs.map(function(doc, index){
                     return <li key={ index }>
-                      
+
                       <Link to="/listpage" state = {{ docID: doc}}>
                         {doc}
                       </Link>
