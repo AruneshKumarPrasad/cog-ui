@@ -1,5 +1,5 @@
 import styles from './ListPage.module.css';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { auth, db } from '../../firebase';
 import { useLocation } from 'react-router-dom';
 import { collection, query, where, getDocs } from 'firebase/firestore';
@@ -9,11 +9,19 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeftLong } from '@fortawesome/free-solid-svg-icons';
 
 function ListPage() {
+
+	useEffect(() => {
+		let ignore = false;
+		if (!ignore)  firebaseToArray()
+		return () => { ignore = true; }
+		},[]);
+
 	const location = useLocation();
 	const { docID } = location.state;
 	const [array, setArray] = useState([]);
 	const [headerArray, setHeaderArray] = useState([]);
 	const [fileName, setFileName] = useState('');
+
 	const firebaseToArray = async (string) => {
 		const docsRef = collection(
 			db,
@@ -29,8 +37,6 @@ function ListPage() {
 			setFileName(doc.data()['name']);
 			setArray([...doc.data()['array']]);
 			setHeaderArray([...doc.data()['keys']]);
-			console.log(' - > ' + Object.keys(array[0]));
-			console.log(' - > ' + Object.values(array[0]));
 		});
 	};
 
@@ -45,8 +51,6 @@ function ListPage() {
 			</h1>
 			<div className={styles.innerBox}>
 				<div style={{ textAlign: 'center' }}>
-					<button onClick={firebaseToArray}>Load Preview</button>
-					{'    '}
 					<p style={{ margin: '0' }}> Dataset Name: {fileName}</p>
 					<br />
 					<table className={styles.tbl}>
