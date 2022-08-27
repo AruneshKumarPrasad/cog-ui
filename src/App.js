@@ -1,23 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+import Home from "./components/Home/Home";
+import Login from "./components/Login/Login";
+import Signup from "./components/SignUp/SignUp";
+import LandingPage from "./components/LandingPage/LandingPage";
+import ListPage from "./components/ListPage/ListPage";
+import Upload from "./components/Upload/Upload";
+
+import { auth } from "./firebase";
+
+import "./App.css";
 
 function App() {
+  const [userName, setUserName] = useState("");
+
+  useEffect(() => {
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        setUserName(user.displayName);
+      } else setUserName("");
+    });
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/landingpage" element={<LandingPage name={userName} />} />
+          <Route path="/listpage" element={<ListPage />} />
+          <Route path="/upload" element={<Upload />} />
+        </Routes>
+      </Router>
     </div>
   );
 }

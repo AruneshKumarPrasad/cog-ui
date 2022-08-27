@@ -1,0 +1,67 @@
+import styles from "./ListPage.module.css";
+import React, { useState } from "react";
+import { auth,db } from "../../firebase";
+import { useLocation  } from "react-router-dom";
+import { collection, query, where, getDocs } from "firebase/firestore";
+import { Link } from "react-router-dom";
+
+
+
+function ListPage() {
+    const location = useLocation()
+    const { docID } = location.state
+    const [array, setArray] = useState([]);
+    const [headerArray, setHeaderArray] = useState([]);
+    const firebaseToArray = async string => {
+      const docsRef = collection(db, "users",auth.currentUser.uid,'documents');
+      const q = query(docsRef, where('name', "==", docID));
+      const querySnapshot = await getDocs(q);
+      querySnapshot.forEach((doc) => {
+        // doc.data() is never undefined for query doc snapshots
+        console.log(doc.id, " => ", doc.data()['name']);
+        setArray([...doc.data()['array']]);
+        setHeaderArray([...doc.data()['keys']]);
+        console.log(" - > " +Object.keys(array[0]));
+        console.log(" - > " +Object.values(array[0]));
+       }
+      );
+      };
+
+  return (
+    <div className={styles.container}>
+      <div className={styles.innerBox}>
+      <h1>
+            <Link to="/landingpage">
+              Landing Page
+            </Link>
+          </h1>
+        <h1 className={styles.heading}>
+            Lists
+        </h1>
+        <div style={{ textAlign: "center" }}>
+          <button onClick={firebaseToArray}>preview</button>
+          <table>
+        <thead>
+          <tr key={"header"}>
+            {headerArray.map((key) => (
+              <th>{key}</th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+        {array.map((item) => (
+          <tr>
+            {headerArray.map((key) => (
+                <th>{item[key]}</th>
+            ))}
+          </tr>
+          ))}
+        </tbody>
+      </table>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default ListPage;
