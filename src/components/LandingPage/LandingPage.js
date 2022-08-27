@@ -9,12 +9,6 @@ import Nav from '../Nav/Nav';
 
 function LandingPage(props) {
 
-	useEffect(() => {
-		let ignore = false;
-		if (!ignore)  handleCheckList()
-		return () => { ignore = true; }
-		},[]);
-
 	const [arrayOfDocs, setArrayOfDocs] = useState([]);
 
 	const handleCheckList = async () => {
@@ -25,7 +19,6 @@ function LandingPage(props) {
 			auth.currentUser.uid,
 			'documents'
 		);
-
 		// Create a query against the collection.
 		const q = query(docsRef);
 		const querySnapshot = await getDocs(q);
@@ -52,7 +45,9 @@ function LandingPage(props) {
 			<Nav />
 			<div className={styles.innerBox}>
 				<div style={{ textAlign: 'center' }} onLoad={handleCheckList}>
-					{/* <button onClick={handleCheckList}>Get Files</button> */}
+					<button onClick={handleCheckList}>Get Files</button>
+					<br />
+					<br />
 					<table className={styles.tbl}>
 						<thead>
 							<tr>
