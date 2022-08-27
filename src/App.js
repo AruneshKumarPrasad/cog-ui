@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Profile from "./components/Profile/Profile";
-import Home from "./components/Home/Home";
 import Login from "./components/Login/Login";
 import Signup from "./components/SignUp/SignUp";
 import LandingPage from "./components/LandingPage/LandingPage";
