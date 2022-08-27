@@ -1,30 +1,11 @@
-import { signOut } from 'firebase/auth';
 import { auth, db } from '../../firebase';
 import styles from './LandingPage.module.css';
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { collection, query, getDocs } from 'firebase/firestore';
-import Nav from '../Nav/Nav';
 
 function LandingPage(props) {
-	// Sign-out and Navigation
-	const navigate = useNavigate();
-	const [submitButtonDisabled, setSubmitButtonDisabled] = useState(false);
-	const handleLogout = () => {
-		setSubmitButtonDisabled(true);
-		signOut(auth)
-			.then(async (res) => {
-				//Sign-out Successful
-				setSubmitButtonDisabled(false);
-				navigate('/');
-			})
-			.catch((err) => {
-				setSubmitButtonDisabled(false);
-				//Sign-out Failed!
-			});
-	};
-
-	const [arrayOfDocs, setArrayOfDocs] = useState([]);
+  const [arrayOfDocs, setArrayOfDocs] = useState([]);
 
 	const handleCheckList = async () => {
 		setArrayOfDocs((arrayOfDocs) => []);
@@ -44,12 +25,10 @@ function LandingPage(props) {
 	};
 
 	return (
-		<>
-			<Nav />
 			<div className = {styles.container}>
 				<div className = {styles.innerBox}>
 					<div
-						className style= {{ textAlign: 'center' }}
+						style= {{ textAlign: 'center' }}
 						onLoad={handleCheckList}>
 						<button onClick={handleCheckList}>Get Files</button>
 						<ul>
@@ -68,7 +47,6 @@ function LandingPage(props) {
 					</div>
 				</div>
 			</div>
-		</>
 	);
 }
 
