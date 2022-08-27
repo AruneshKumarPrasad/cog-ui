@@ -26,8 +26,14 @@ function LandingPage(props) {
 		});
 	};
 
-	const handleDelete = async () => {
-		await deleteDoc(doc(db, "cities", "DC"));
+	const handleDelete = async (fileName) => {
+		await deleteDoc(doc(db,
+			'users',
+			auth.currentUser.uid,
+			'documents',
+			fileName
+			)).catch((err)=>{console.log(err)});
+			handleCheckList();
 	};
 
 	return (
@@ -68,7 +74,9 @@ function LandingPage(props) {
 										<td>{doc.data()['array'].length}</td>
 										<td>{doc.data()['date']}  {doc.data()['time']}</td>
 										<td>
-											<FontAwesomeIcon icon={faTrash} />
+											<FontAwesomeIcon onClick = {
+												()=>handleDelete(doc.id)
+												} icon={faTrash} />
 										</td>
 										<td>
 											<Link
