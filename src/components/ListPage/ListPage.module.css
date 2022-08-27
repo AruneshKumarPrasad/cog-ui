@@ -2,7 +2,7 @@
     height: 100%;
     min-height: 100vh;
     width: 100%;
-    background: linear-gradient(to right, #9900ff, #cc80ff);
+    background: linear-gradient(#F5F7FA,#B8C6DB);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -51,13 +51,12 @@
     position: absolute;
     top: 100px;
     left: 50px;
-    color: white;
 }
 
 .backbtn  a {
-    color: white;
+    color: rgb(0, 0, 0);
 }
 
 .backbtn  a:hover {
-    color: rgb(210, 182, 182);
+    color: rgb(114, 114, 114);
 }

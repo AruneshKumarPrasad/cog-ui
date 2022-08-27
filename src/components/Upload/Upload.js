@@ -26,6 +26,8 @@ const Upload = () => {
 
 	const [time, setTime] = useState('');
 
+	const [cusName, setCusName] = useState('');
+
 	var today = new Date();
 
 	// This function will be called when
@@ -58,7 +60,8 @@ const Upload = () => {
 				today.getMinutes() +
 				':' +
 				today.getSeconds();
-			const nameFile = inputFile.name;
+
+			const nameFile = cusName;
 			setDate(dateInstance);
 			setTime(timeInstance);
 			setName(nameFile);
@@ -104,6 +107,11 @@ const Upload = () => {
 		navigate('/landingpage');
 	};
 
+	const handleCusName = (e) => {
+		console.log(e.target.value);
+		setCusName(e.target.value);
+	};
+
 	return (
 		<div className={styles.container}>
 			<Nav />
@@ -115,8 +123,15 @@ const Upload = () => {
 			</h1>
 			<div className={styles.innerBox}>
 				<label htmlFor="csvInput" style={{ display: 'block' }}>
-					<h3>Select a file to upload</h3>
+					<h4>Select a file to upload</h4>
 				</label>
+				<input
+					type="text"
+					name="cusName"
+					value={cusName}
+					onChange={handleCusName}
+					placeholder="Enter file name"
+				/>
 				<div className={styles.filecontainer}>
 					<input
 						onChange={handleFileChange}

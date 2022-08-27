@@ -42,9 +42,10 @@ function ListPage() {
 				</Link>
 			</h1>
 			<div className={styles.innerBox}>
-				<h1 className={styles.heading}>Lists</h1>
 				<div style={{ textAlign: 'center' }}>
-					<button onClick={firebaseToArray}>preview</button>
+					<button onClick={firebaseToArray}>Preview</button>
+					<br />
+					<br />
 					<table className={styles.tbl}>
 						<thead>
 							<tr key={'header'}>
