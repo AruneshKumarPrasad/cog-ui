@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import { collection, query, getDocs, doc, deleteDoc } from 'firebase/firestore';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faTableCells } from '@fortawesome/free-solid-svg-icons';
-import Nav from '../Nav/Nav';
 
 function LandingPage(props) {
 
@@ -44,10 +43,6 @@ function LandingPage(props) {
 	};
 
 	return (
-		<>
-		<Nav />
-			<br />
-			<br />
 		<div className={styles.container}>
 			<Nav />
 			<div className={styles.innerBox}>
@@ -102,7 +97,6 @@ function LandingPage(props) {
 				</div>
 			</div>
 		</div>
-		</>
 	);
 }
 
